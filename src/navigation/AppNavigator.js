@@ -31,12 +31,12 @@ function TransactionsStack() {
       <Stack.Screen
         name="AddTransaction"
         component={AddTransactionScreen}
-        options={{ 
-          title: 'Nueva Transacción',
+        options={({ route }) => ({
+          title: route.params?.transaction ? 'Editar Transacción' : 'Nueva Transacción',
           headerStyle: { backgroundColor: COLORS.primary },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' },
-        }}
+        })}
       />
     </Stack.Navigator>
   );
@@ -58,12 +58,12 @@ function CategoriesStack() {
       <Stack.Screen
         name="AddCategory"
         component={AddCategoryScreen}
-        options={{ 
-          title: 'Nueva Categoría',
+        options={({ route }) => ({
+          title: route.params?.category ? 'Editar Categoría' : 'Nueva Categoría',
           headerStyle: { backgroundColor: COLORS.primary },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' },
-        }}
+        })}
       />
     </Stack.Navigator>
   );

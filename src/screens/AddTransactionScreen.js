@@ -33,10 +33,14 @@ export default function AddTransactionScreen({ navigation, route }) {
   const loadCategories = () => {
     const cats = getCategories(user.id, type);
     setCategories(cats);
-    
-    // Si no hay categoría seleccionada y hay categorías disponibles, seleccionar la primera
-    if (!categoryId && cats.length > 0) {
-      setCategoryId(cats[0].id);
+
+    if (cats.length > 0) {
+      const categoryExists = cats.find(cat => cat.id === categoryId);
+      if (!categoryExists) {
+        setCategoryId(cats[0].id);
+      }
+    } else {
+      setCategoryId(null);
     }
   };
 
@@ -155,7 +159,7 @@ export default function AddTransactionScreen({ navigation, route }) {
             placeholder="0"
             value={amount}
             onChangeText={setAmount}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             placeholderTextColor={COLORS.textSecondary}
           />
         </View>

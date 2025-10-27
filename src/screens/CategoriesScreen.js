@@ -23,7 +23,11 @@ export default function CategoriesScreen({ navigation }) {
     });
 
     return unsubscribe;
-  }, [navigation, selectedTab]);
+  }, [navigation]);
+
+  useEffect(() => {
+    loadCategories();
+  }, [selectedTab]);
 
   const loadCategories = () => {
     const data = getCategories(user.id, selectedTab);
