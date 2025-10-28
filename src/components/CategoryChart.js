@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
 import { COLORS } from '../constants/colors';
+import { formatNumber } from '../utils/dateUtils';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -18,7 +19,7 @@ export default function CategoryChart({ data, title }) {
   }
 
   const chartData = data.map((item, index) => ({
-    name: item.name,
+    name: `${item.name} ($${formatNumber(item.total)})`,
     amount: item.total,
     color: item.color,
     legendFontColor: COLORS.text,
