@@ -21,13 +21,21 @@ export const formatDate = (dateString) => {
   return `${day}/${month}/${year}`;
 };
 
+export const formatNumber = (value) => {
+  if (!value || isNaN(value)) return '0';
+  const numValue = typeof value === 'string' ? parseFloat(value) : value;
+  return Math.floor(numValue).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+export const parseFormattedNumber = (formattedValue) => {
+  if (!formattedValue) return 0;
+  const cleanValue = formattedValue.replace(/\./g, '');
+  const parsed = parseFloat(cleanValue);
+  return isNaN(parsed) ? 0 : parsed;
+};
+
 export const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: 'COP',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
+  return '$' + formatNumber(amount);
 };
 
 export const getMonthName = (monthIndex) => {

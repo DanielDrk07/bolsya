@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 import { getCategories, createTransaction, updateTransaction } from '../database/queries';
 import { COLORS } from '../constants/colors';
+import { formatNumber, parseFormattedNumber } from '../utils/dateUtils';
 
 export default function AddTransactionScreen({ navigation, route }) {
   const { user } = useAuth();
@@ -20,7 +21,7 @@ export default function AddTransactionScreen({ navigation, route }) {
   const isEditing = !!transaction;
 
   const [type, setType] = useState(transaction?.type || 'expense');
-  const [amount, setAmount] = useState(transaction?.amount?.toString() || '');
+  const [amount, setAmount] = useState(transaction?.amount ? formatNumber(transaction.amount) : '');
   const [categoryId, setCategoryId] = useState(transaction?.category_id || null);
   const [description, setDescription] = useState(transaction?.description || '');
   const [date, setDate] = useState(transaction?.date || new Date().toISOString());
@@ -45,7 +46,9 @@ export default function AddTransactionScreen({ navigation, route }) {
   };
 
   const handleSave = () => {
-    if (!amount || parseFloat(amount) <= 0) {
+    const numAmount = parseFormattedNumber(amount);
+
+    if (!amount || numAmount <= 0) {
       Alert.alert('Error', 'Por favor ingresa un monto válido');
       return;
     }
@@ -54,8 +57,6 @@ export default function AddTransactionScreen({ navigation, route }) {
       Alert.alert('Error', 'Por favor selecciona una categoría');
       return;
     }
-
-    const numAmount = parseFloat(amount);
 
     if (isEditing) {
       const result = updateTransaction(
@@ -158,8 +159,15 @@ export default function AddTransactionScreen({ navigation, route }) {
             style={styles.amountInput}
             placeholder="0"
             value={amount}
-            onChangeText={setAmount}
-            keyboardType="decimal-pad"
+            onChangeText={(text) => {
+              const cleanText = text.replace(/[^0-9]/g, '');
+              if (cleanText === '') {
+                setAmount('');
+              } else {
+                setAmount(formatNumber(cleanText));
+              }
+            }}
+            keyboardType="number-pad"
             placeholderTextColor={COLORS.textSecondary}
           />
         </View>
