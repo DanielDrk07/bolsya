@@ -226,24 +226,30 @@ export const getDashboardStats = (userId, startDate, endDate) => {
     const expensesByCategory = db.getAllSync(
       `SELECT c.name, c.color, c.icon, COALESCE(SUM(t.amount), 0) as total
        FROM categories c
-       LEFT JOIN transactions t ON c.id = t.category_id AND t.date BETWEEN ? AND ?
+       LEFT JOIN transactions t ON c.id = t.category_id
+         AND t.user_id = ?
+         AND t.type = "expense"
+         AND t.date BETWEEN ? AND ?
        WHERE c.user_id = ? AND c.type = "expense"
        GROUP BY c.id, c.name, c.color, c.icon
        HAVING total > 0
        ORDER BY total DESC`,
-      [startDate, endDate, userId]
+      [userId, startDate, endDate, userId]
     );
 
     // Ingresos por categoría
     const incomesByCategory = db.getAllSync(
       `SELECT c.name, c.color, c.icon, COALESCE(SUM(t.amount), 0) as total
        FROM categories c
-       LEFT JOIN transactions t ON c.id = t.category_id AND t.date BETWEEN ? AND ?
+       LEFT JOIN transactions t ON c.id = t.category_id
+         AND t.user_id = ?
+         AND t.type = "income"
+         AND t.date BETWEEN ? AND ?
        WHERE c.user_id = ? AND c.type = "income"
        GROUP BY c.id, c.name, c.color, c.icon
        HAVING total > 0
        ORDER BY total DESC`,
-      [startDate, endDate, userId]
+      [userId, startDate, endDate, userId]
     );
 
     return {
