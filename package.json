@@ -28,5 +28,9 @@
     "react-native-svg": "15.12.1",
     "react-native-web": "^0.21.0"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-expo": "^54.0.13"
+  }
 }

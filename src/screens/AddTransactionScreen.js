@@ -13,7 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 import { getCategories, createTransaction, updateTransaction } from '../database/queries';
 import { COLORS } from '../constants/colors';
-import { formatNumber, parseFormattedNumber } from '../utils/dateUtils';
+import { formatNumber, parseFormattedNumber } from '../utils/numberUtils';
 
 export default function AddTransactionScreen({ navigation, route }) {
   const { user } = useAuth();
@@ -157,14 +157,15 @@ export default function AddTransactionScreen({ navigation, route }) {
           <Text style={styles.label}>Monto</Text>
           <TextInput
             style={styles.amountInput}
-            placeholder="0"
+            placeholder="0,00"
             value={amount}
             onChangeText={(text) => {
               const cleanText = text.replace(/[^0-9]/g, '');
-              if (cleanText === '') {
-                setAmount('');
+              if (cleanText) {
+                const numericValue = parseInt(cleanText, 10) / 100;
+                setAmount(formatNumber(numericValue));
               } else {
-                setAmount(formatNumber(cleanText));
+                setAmount('');
               }
             }}
             keyboardType="number-pad"

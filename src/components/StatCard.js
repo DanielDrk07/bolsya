@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../constants/colors';
-import { formatCurrency } from '../utils/dateUtils';
+import { formatCurrency } from '../utils/numberUtils';
 
 export default function StatCard({ title, amount, icon, color, type }) {
   return (

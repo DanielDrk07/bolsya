@@ -11,7 +11,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 import { getTransactions, deleteTransaction } from '../database/queries';
 import { COLORS } from '../constants/colors';
-import { formatDate, formatCurrency } from '../utils/dateUtils';
+import { formatDate } from '../utils/dateUtils';
+import { formatCurrency } from '../utils/numberUtils';
 
 export default function TransactionsScreen({ navigation }) {
   const { user } = useAuth();
