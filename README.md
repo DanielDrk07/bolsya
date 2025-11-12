@@ -215,23 +215,8 @@ textSecondary: '#64748b' // Texto secundario
 - [ ] Multi-moneda
 - [ ] Recordatorios de gastos recurrentes
 
-## 🤝 Contribuciones
 
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add: nueva característica'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 👨‍💻 Autor
-
-**Tu Nombre**
+**Jose Daniel Burbano Aponte**
 - GitHub: [@DanielDrk07](https://github.com/DanielDrk07)
 - Email: josedanielburbano257@gmail.com
 
@@ -240,5 +225,6 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
   Hecho con ❤️ y ☕
 </div>
 ```
+
 
 
