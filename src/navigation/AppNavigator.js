@@ -11,6 +11,7 @@ import AddTransactionScreen from '../screens/AddTransactionScreen';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import AddCategoryScreen from '../screens/AddCategoryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import ChatScreen from '../screens/ChatScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -82,6 +83,8 @@ export default function AppNavigator() {
             iconName = focused ? 'wallet' : 'wallet-outline';
           } else if (route.name === 'Categories') {
             iconName = focused ? 'grid' : 'grid-outline';
+          } else if (route.name === 'Chat') {
+            iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
           }
@@ -120,6 +123,11 @@ export default function AppNavigator() {
         name="Categories" 
         component={CategoriesStack}
         options={{ headerShown: false, title: 'Categorías' }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Asistente IA' }}
       />
       <Tab.Screen 
         name="Profile" 

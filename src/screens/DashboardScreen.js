@@ -13,6 +13,7 @@ import { COLORS } from '../constants/colors';
 import { getStartOfMonth, getEndOfMonth, getCurrentMonthYear } from '../utils/dateUtils';
 import StatCard from '../components/StatCard';
 import CategoryChart from '../components/CategoryChart';
+import FinancialAdviceCard from '../components/FinancialAdviceCard';
 
 export default function DashboardScreen({ navigation }) {
   const { user } = useAuth();
@@ -60,6 +61,8 @@ export default function DashboardScreen({ navigation }) {
         <Text style={styles.greeting}>Hola, {user?.email?.split('@')[0]}</Text>
         <Text style={styles.period}>{getCurrentMonthYear()}</Text>
       </View>
+
+      <FinancialAdviceCard />
 
       <View style={styles.statsContainer}>
         <StatCard
