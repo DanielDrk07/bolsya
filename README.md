@@ -232,69 +232,13 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 ## 👨‍💻 Autor
 
 **Tu Nombre**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- Email: tu@email.com
+- GitHub: [@DanielDrk07](https://github.com/DanielDrk07)
+- Email: josedanielburbano257@gmail.com
 
-## 🙏 Agradecimientos
-
-- [Expo](https://expo.dev/) por la plataforma de desarrollo
-- [Google Gemini](https://ai.google.dev/) por la API de IA
-- [React Navigation](https://reactnavigation.org/) por el sistema de navegación
-- [React Native Chart Kit](https://github.com/indiespirit/react-native-chart-kit) por los gráficos
-
----
 
 <div align="center">
   Hecho con ❤️ y ☕
 </div>
 ```
 
----
 
-También puedes crear estos archivos adicionales:
-
-### **LICENSE** (MIT License)
-```
-MIT License
-
-Copyright (c) 2024 [Tu Nombre]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-### **.gitignore** (si no lo tienes)
-```
-node_modules/
-.expo/
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
-.env
-
-# SQLite
-*.db
-*.db-journal
-
-# API Keys (importante)
-src/services/aiService.js
