@@ -1,6 +1,6 @@
-import db from './database';
-import * as Crypto from 'expo-crypto';
-import { DEFAULT_CATEGORIES } from '../constants/defaultCategories';
+import db from "./database";
+import * as Crypto from "expo-crypto";
+import { DEFAULT_CATEGORIES } from "../constants/defaultCategories";
 
 // ============ USUARIOS ============
 
@@ -12,7 +12,7 @@ export const createUser = async (email, password) => {
     );
 
     const result = db.runSync(
-      'INSERT INTO users (email, password_hash) VALUES (?, ?)',
+      "INSERT INTO users (email, password_hash) VALUES (?, ?)",
       [email, passwordHash]
     );
 
@@ -22,7 +22,7 @@ export const createUser = async (email, password) => {
 
     return { success: true, userId };
   } catch (error) {
-    console.error('Error creating user:', error);
+    console.error("Error creating user:", error);
     return { success: false, error: error.message };
   }
 };
@@ -35,17 +35,17 @@ export const loginUser = async (email, password) => {
     );
 
     const user = db.getFirstSync(
-      'SELECT * FROM users WHERE email = ? AND password_hash = ?',
+      "SELECT * FROM users WHERE email = ? AND password_hash = ?",
       [email, passwordHash]
     );
 
     if (user) {
       return { success: true, user };
     } else {
-      return { success: false, error: 'Credenciales incorrectas' };
+      return { success: false, error: "Credenciales incorrectas" };
     }
   } catch (error) {
-    console.error('Error logging in:', error);
+    console.error("Error logging in:", error);
     return { success: false, error: error.message };
   }
 };
@@ -56,13 +56,13 @@ export const createDefaultCategories = (userId) => {
   try {
     DEFAULT_CATEGORIES.forEach((category) => {
       db.runSync(
-        'INSERT INTO categories (user_id, name, type, color, icon, is_default) VALUES (?, ?, ?, ?, ?, 1)',
+        "INSERT INTO categories (user_id, name, type, color, icon, is_default) VALUES (?, ?, ?, ?, ?, 1)",
         [userId, category.name, category.type, category.color, category.icon]
       );
     });
     return { success: true };
   } catch (error) {
-    console.error('Error creating default categories:', error);
+    console.error("Error creating default categories:", error);
     return { success: false, error: error.message };
   }
 };
@@ -70,32 +70,32 @@ export const createDefaultCategories = (userId) => {
 export const createCategory = (userId, name, type, color, icon) => {
   try {
     const result = db.runSync(
-      'INSERT INTO categories (user_id, name, type, color, icon, is_default) VALUES (?, ?, ?, ?, ?, 0)',
+      "INSERT INTO categories (user_id, name, type, color, icon, is_default) VALUES (?, ?, ?, ?, ?, 0)",
       [userId, name, type, color, icon]
     );
     return { success: true, categoryId: result.lastInsertRowId };
   } catch (error) {
-    console.error('Error creating category:', error);
+    console.error("Error creating category:", error);
     return { success: false, error: error.message };
   }
 };
 
 export const getCategories = (userId, type = null) => {
   try {
-    let query = 'SELECT * FROM categories WHERE user_id = ?';
+    let query = "SELECT * FROM categories WHERE user_id = ?";
     let params = [userId];
 
     if (type) {
-      query += ' AND type = ?';
+      query += " AND type = ?";
       params.push(type);
     }
 
-    query += ' ORDER BY name ASC';
+    query += " ORDER BY name ASC";
 
     const categories = db.getAllSync(query, params);
     return categories;
   } catch (error) {
-    console.error('Error getting categories:', error);
+    console.error("Error getting categories:", error);
     return [];
   }
 };
@@ -103,12 +103,12 @@ export const getCategories = (userId, type = null) => {
 export const updateCategory = (categoryId, name, color, icon) => {
   try {
     db.runSync(
-      'UPDATE categories SET name = ?, color = ?, icon = ? WHERE id = ?',
+      "UPDATE categories SET name = ?, color = ?, icon = ? WHERE id = ?",
       [name, color, icon, categoryId]
     );
     return { success: true };
   } catch (error) {
-    console.error('Error updating category:', error);
+    console.error("Error updating category:", error);
     return { success: false, error: error.message };
   }
 };
@@ -116,31 +116,44 @@ export const updateCategory = (categoryId, name, color, icon) => {
 export const deleteCategory = (categoryId) => {
   try {
     // Verificar si es categoría predefinida
-    const category = db.getFirstSync('SELECT is_default FROM categories WHERE id = ?', [categoryId]);
-    
+    const category = db.getFirstSync(
+      "SELECT is_default FROM categories WHERE id = ?",
+      [categoryId]
+    );
+
     if (category && category.is_default === 1) {
-      return { success: false, error: 'No se pueden eliminar categorías predefinidas' };
+      return {
+        success: false,
+        error: "No se pueden eliminar categorías predefinidas",
+      };
     }
 
-    db.runSync('DELETE FROM categories WHERE id = ?', [categoryId]);
+    db.runSync("DELETE FROM categories WHERE id = ?", [categoryId]);
     return { success: true };
   } catch (error) {
-    console.error('Error deleting category:', error);
+    console.error("Error deleting category:", error);
     return { success: false, error: error.message };
   }
 };
 
 // ============ TRANSACCIONES ============
 
-export const createTransaction = (userId, categoryId, amount, type, date, description = '') => {
+export const createTransaction = (
+  userId,
+  categoryId,
+  amount,
+  type,
+  date,
+  description = ""
+) => {
   try {
     const result = db.runSync(
-      'INSERT INTO transactions (user_id, category_id, amount, type, date, description) VALUES (?, ?, ?, ?, ?, ?)',
+      "INSERT INTO transactions (user_id, category_id, amount, type, date, description) VALUES (?, ?, ?, ?, ?, ?)",
       [userId, categoryId, amount, type, date, description]
     );
     return { success: true, transactionId: result.lastInsertRowId };
   } catch (error) {
-    console.error('Error creating transaction:', error);
+    console.error("Error creating transaction:", error);
     return { success: false, error: error.message };
   }
 };
@@ -156,16 +169,16 @@ export const getTransactions = (userId, startDate = null, endDate = null) => {
     let params = [userId];
 
     if (startDate && endDate) {
-      query += ' AND t.date BETWEEN ? AND ?';
+      query += " AND t.date BETWEEN ? AND ?";
       params.push(startDate, endDate);
     }
 
-    query += ' ORDER BY t.date DESC, t.created_at DESC';
+    query += " ORDER BY t.date DESC, t.created_at DESC";
 
     const transactions = db.getAllSync(query, params);
     return transactions;
   } catch (error) {
-    console.error('Error getting transactions:', error);
+    console.error("Error getting transactions:", error);
     return [];
   }
 };
@@ -173,35 +186,41 @@ export const getTransactions = (userId, startDate = null, endDate = null) => {
 export const getTransactionById = (transactionId) => {
   try {
     const transaction = db.getFirstSync(
-      'SELECT * FROM transactions WHERE id = ?',
+      "SELECT * FROM transactions WHERE id = ?",
       [transactionId]
     );
     return transaction;
   } catch (error) {
-    console.error('Error getting transaction:', error);
+    console.error("Error getting transaction:", error);
     return null;
   }
 };
 
-export const updateTransaction = (transactionId, categoryId, amount, date, description) => {
+export const updateTransaction = (
+  transactionId,
+  categoryId,
+  amount,
+  date,
+  description
+) => {
   try {
     db.runSync(
-      'UPDATE transactions SET category_id = ?, amount = ?, date = ?, description = ? WHERE id = ?',
+      "UPDATE transactions SET category_id = ?, amount = ?, date = ?, description = ? WHERE id = ?",
       [categoryId, amount, date, description, transactionId]
     );
     return { success: true };
   } catch (error) {
-    console.error('Error updating transaction:', error);
+    console.error("Error updating transaction:", error);
     return { success: false, error: error.message };
   }
 };
 
 export const deleteTransaction = (transactionId) => {
   try {
-    db.runSync('DELETE FROM transactions WHERE id = ?', [transactionId]);
+    db.runSync("DELETE FROM transactions WHERE id = ?", [transactionId]);
     return { success: true };
   } catch (error) {
-    console.error('Error deleting transaction:', error);
+    console.error("Error deleting transaction:", error);
     return { success: false, error: error.message };
   }
 };
@@ -260,7 +279,7 @@ export const getDashboardStats = (userId, startDate, endDate) => {
       incomesByCategory,
     };
   } catch (error) {
-    console.error('Error getting dashboard stats:', error);
+    console.error("Error getting dashboard stats:", error);
     return {
       totalIncome: 0,
       totalExpense: 0,
@@ -270,3 +289,101 @@ export const getDashboardStats = (userId, startDate, endDate) => {
     };
   }
 };
+
+// ============ CHAT IA ============
+
+export const saveChatMessage = (userId, role, content) => {
+  try {
+    const result = db.runSync(
+      "INSERT INTO chat_messages (user_id, role, content) VALUES (?, ?, ?)",
+      [userId, role, content]
+    );
+    return { success: true, messageId: result.lastInsertRowId };
+  } catch (error) {
+    console.error("Error saving chat message:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const getChatHistory = (userId, limit = 50) => {
+  try {
+    const messages = db.getAllSync(
+      "SELECT * FROM chat_messages WHERE user_id = ? ORDER BY created_at ASC LIMIT ?",
+      [userId, limit]
+    );
+    return messages;
+  } catch (error) {
+    console.error("Error getting chat history:", error);
+    return [];
+  }
+};
+
+export const clearChatHistory = (userId) => {
+  try {
+    db.runSync("DELETE FROM chat_messages WHERE user_id = ?", [userId]);
+    return { success: true };
+  } catch (error) {
+    console.error("Error clearing chat history:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const deleteChatMessage = (messageId) => {
+  try {
+    db.runSync("DELETE FROM chat_messages WHERE id = ?", [messageId]);
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting chat message:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+// Obtener contexto financiero del usuario para la IA
+export const getUserFinancialContext = (userId) => {
+  try {
+    const startDate = getStartOfMonth();
+    const endDate = getEndOfMonth();
+
+    // Obtener stats del mes
+    const stats = getDashboardStats(userId, startDate, endDate);
+
+    // Obtener últimas transacciones
+    const recentTransactions = db.getAllSync(
+      `SELECT t.*, c.name as category_name, c.type as category_type
+       FROM transactions t
+       LEFT JOIN categories c ON t.category_id = c.id
+       WHERE t.user_id = ?
+       ORDER BY t.date DESC
+       LIMIT 10`,
+      [userId]
+    );
+
+    // Obtener todas las categorías del usuario
+    const categories = getCategories(userId);
+
+    return {
+      stats,
+      recentTransactions,
+      categories,
+    };
+  } catch (error) {
+    console.error("Error getting financial context:", error);
+    return null;
+  }
+};
+
+// Función helper para getStartOfMonth (si no existe)
+function getStartOfMonth() {
+  const date = new Date();
+  date.setDate(1);
+  date.setHours(0, 0, 0, 0);
+  return date.toISOString();
+}
+
+function getEndOfMonth() {
+  const date = new Date();
+  date.setMonth(date.getMonth() + 1);
+  date.setDate(0);
+  date.setHours(23, 59, 59, 999);
+  return date.toISOString();
+}

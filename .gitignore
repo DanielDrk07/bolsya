@@ -40,3 +40,23 @@ yarn-error.*
 /ios
 /android
 .env
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Build / cache
+.gradle/
+.expo-shared/
+.cache/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Windows
+Thumbs.db

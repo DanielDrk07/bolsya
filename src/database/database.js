@@ -1,6 +1,6 @@
-import * as SQLite from 'expo-sqlite';
+import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabaseSync('bolsya.db');
+const db = SQLite.openDatabaseSync("bolsya.db");
 
 // Inicializar la base de datos
 export const initDatabase = () => {
@@ -44,10 +44,20 @@ export const initDatabase = () => {
         FOREIGN KEY (category_id) REFERENCES categories (id)
       );
     `);
+    db.execSync(`
+      CREATE TABLE IF NOT EXISTS chat_messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        role TEXT NOT NULL CHECK(role IN ('user', 'assistant')),
+        content TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+      );
+    `);
 
-    console.log('Database initialized successfully');
+    console.log("Database initialized successfully");
   } catch (error) {
-    console.error('Error initializing database:', error);
+    console.error("Error initializing database:", error);
   }
 };
 
