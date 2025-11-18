@@ -1,101 +1,160 @@
 # 💰 Bolsya - Gestión Financiera Personal
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React%20Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+<div align="center">
+  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
   <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" />
   <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" />
-</p>
+  <img src="https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" />
+</div>
 
-App móvil de gestión financiera personal desarrollada con React Native y Expo. Lleva el control completo de tus ingresos y gastos de manera simple, intuitiva y completamente offline.
+## 📱 Descripción
 
----
+**Bolsya** es una aplicación móvil de gestión financiera personal que te permite llevar un control completo de tus ingresos y gastos. Con un asistente de IA integrado, obtén recomendaciones personalizadas y análisis inteligentes de tus finanzas.
 
-## 📱 Características Principales
+### ✨ Características Principales
 
-✨ **Dashboard Interactivo**
-- Visualiza tu balance mensual en tiempo real
-- Gráficos de torta por categorías de gastos e ingresos
-- Estadísticas detalladas del mes actual
+- 🔐 **Autenticación Local** - Sistema de registro e inicio de sesión con email y contraseña
+- 📊 **Dashboard Interactivo** - Visualiza tu balance, ingresos y gastos con gráficos de torta
+- 💸 **Gestión de Transacciones** - Registra ingresos y gastos con categorías personalizables
+- 🏷️ **Categorías Personalizadas** - Crea y gestiona tus propias categorías con iconos y colores
+- 🤖 **Asistente IA con Gemini** - Chat inteligente que analiza tus datos financieros y te brinda recomendaciones
+- 💾 **Base de Datos Local SQLite** - Todos tus datos se almacenan de forma segura en tu dispositivo
+- 📈 **Estadísticas en Tiempo Real** - Análisis automático de gastos e ingresos por categoría
 
-💸 **Gestión de Transacciones**
-- Registra ingresos y gastos fácilmente
-- Categorización automática con iconos visuales
-- Añade descripciones opcionales a cada transacción
-- Visualiza tu historial completo de movimientos
+## 🛠️ Tecnologías Utilizadas
 
-📁 **Categorías Personalizables**
-- 12 categorías predefinidas (8 gastos + 4 ingresos)
-- Crea tus propias categorías personalizadas
-- Amplia selección de iconos y colores
-- Gestiona, edita o elimina categorías según tus necesidades
+- **React Native** - Framework para desarrollo móvil multiplataforma
+- **Expo** - Plataforma para desarrollo y despliegue de aplicaciones React Native
+- **SQLite** - Base de datos relacional local
+- **Google Gemini API** - IA generativa para el asistente financiero
+- **React Navigation** - Navegación entre pantallas con tabs y stacks
+- **React Native Chart Kit** - Visualización de datos con gráficos
+- **AsyncStorage** - Persistencia de sesión de usuario
 
-🔒 **Seguridad y Privacidad**
-- Autenticación local con email y contraseña
-- Datos almacenados localmente en tu dispositivo
-- Encriptación de contraseñas con SHA-256
-- Sin conexión a internet requerida
+## 📋 Requisitos Previos
 
----
+- Node.js v18 o superior
+- npm o yarn
+- Expo Go app (para probar en dispositivo físico)
+- Android Studio o Xcode (opcional, para emuladores)
 
-## 🎨 Capturas de Pantalla
-
-
-
-## 🚀 Comenzando
-
-### Prerequisitos
-
-- [Node.js](https://nodejs.org/) (v14 o superior)
-- [Expo CLI](https://docs.expo.dev/get-started/installation/)
-- [Expo Go](https://expo.dev/client) instalado en tu dispositivo móvil
-
-### Instalación
+## 🚀 Instalación
 
 1. **Clona el repositorio**
 ```bash
-   git clone https://github.com/DanielDrk07/bolsya.git
-   cd bolsya
+git clone https://github.com/tu-usuario/bolsya.git
+cd bolsya
 ```
 
 2. **Instala las dependencias**
 ```bash
-   npm install
+npm install
 ```
 
-3. **Inicia el servidor de desarrollo**
+3. **Configura tu API Key de Gemini**
+
+Obtén una API Key gratuita en [Google AI Studio](https://aistudio.google.com/apikey)
+
+Abre `src/services/aiService.js` y reemplaza:
+```javascript
+const API_KEY = "TU_API_KEY_AQUI";
+```
+
+4. **Inicia la aplicación**
 ```bash
-   npx expo start
+npx expo start
 ```
 
-4. **Escanea el código QR**
-   - **Android:** Usa la app Expo Go para escanear el código QR
-   - **iOS:** Usa la cámara del iPhone para escanear el código QR
+5. **Ejecuta en tu dispositivo**
+- Escanea el código QR con **Expo Go** (Android) o la cámara (iOS)
+- O presiona `a` para Android emulator / `i` para iOS simulator
 
----
+## 📱 Pantallas
 
-## 🛠️ Tecnologías Utilizadas
+### 🏠 Dashboard
+- Resumen del mes actual (Balance, Ingresos, Gastos)
+- Gráficos por categorías
+- Actualización en tiempo real
 
-| Tecnología | Propósito |
-|-----------|-----------|
-| **React Native** | Framework principal para desarrollo móvil |
-| **Expo** | Plataforma de desarrollo y herramientas |
-| **SQLite** | Base de datos local relacional |
-| **React Navigation** | Sistema de navegación entre pantallas |
-| **React Native Chart Kit** | Visualización de gráficos y estadísticas |
-| **Expo Crypto** | Encriptación de contraseñas |
-| **AsyncStorage** | Almacenamiento de sesión del usuario |
+### 💰 Transacciones
+- Lista de todas tus transacciones
+- Agregar nuevos ingresos o gastos
+- Selección de categoría, monto, fecha y descripción
+- Eliminar transacciones (mantener presionado)
 
----
+### 🏷️ Categorías
+- Vista de categorías por tipo (Ingresos/Gastos)
+- Crear categorías personalizadas
+- Selector de iconos y colores
+- Editar/eliminar categorías propias
+- Categorías predefinidas protegidas
 
-## 📂 Estructura del Proyecto
+### 🤖 Asistente IA
+- Chat conversacional con IA
+- Análisis automático de tus datos financieros
+- Recomendaciones personalizadas
+- Preguntas frecuentes sugeridas
+- Historial de conversación guardado
+
+### 👤 Perfil
+- Información del usuario
+- Cerrar sesión
+
+## 🗄️ Estructura de la Base de Datos
+```sql
+-- Usuarios
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Categorías
+CREATE TABLE categories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('income', 'expense')),
+  color TEXT DEFAULT '#6366f1',
+  icon TEXT DEFAULT 'help-circle',
+  is_default INTEGER DEFAULT 0,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+-- Transacciones
+CREATE TABLE transactions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  category_id INTEGER NOT NULL,
+  amount REAL NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('income', 'expense')),
+  date DATETIME NOT NULL,
+  description TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users (id),
+  FOREIGN KEY (category_id) REFERENCES categories (id)
+);
+
+-- Historial de chat con IA
+CREATE TABLE chat_messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  role TEXT NOT NULL CHECK(role IN ('user', 'assistant')),
+  content TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+```
+
+## 📁 Estructura del Proyecto
 ```
 bolsya/
 ├── src/
-│   ├── components/           # Componentes reutilizables
-│   │   ├── StatCard.js       # Tarjeta de estadísticas
-│   │   └── CategoryChart.js  # Gráfico de categorías
-│   ├── screens/              # Pantallas principales
+│   ├── components/          # Componentes reutilizables
+│   │   ├── StatCard.js
+│   │   └── CategoryChart.js
+│   ├── screens/             # Pantallas de la app
 │   │   ├── LoginScreen.js
 │   │   ├── RegisterScreen.js
 │   │   ├── DashboardScreen.js
@@ -103,177 +162,69 @@ bolsya/
 │   │   ├── AddTransactionScreen.js
 │   │   ├── CategoriesScreen.js
 │   │   ├── AddCategoryScreen.js
+│   │   ├── AIChatScreen.js
 │   │   └── ProfileScreen.js
-│   ├── database/             # Lógica de base de datos
-│   │   ├── database.js       # Configuración SQLite
-│   │   └── queries.js        # Consultas y operaciones
-│   ├── contexts/             # Context API
-│   │   └── AuthContext.js    # Autenticación de usuarios
-│   ├── navigation/           # Configuración de navegación
+│   ├── database/            # Configuración de SQLite
+│   │   ├── database.js
+│   │   └── queries.js
+│   ├── contexts/            # Context API
+│   │   └── AuthContext.js
+│   ├── navigation/          # Navegación
 │   │   ├── AuthNavigator.js
 │   │   └── AppNavigator.js
-│   ├── utils/                # Funciones utilitarias
-│   │   └── dateUtils.js      # Formateo de fechas y moneda
-│   └── constants/            # Constantes y configuración
-│       ├── colors.js         # Paleta de colores
+│   ├── services/            # Servicios externos
+│   │   └── aiService.js
+│   ├── utils/               # Utilidades
+│   │   └── dateUtils.js
+│   └── constants/           # Constantes
+│       ├── colors.js
 │       └── defaultCategories.js
-├── App.js                    # Punto de entrada principal
-├── package.json
-└── README.md
+├── assets/
+├── App.js
+└── package.json
 ```
 
----
-
-## 📊 Modelo de Base de Datos
-
-### Tablas
-
-**users**
-```sql
-- id (INTEGER PRIMARY KEY)
-- email (TEXT UNIQUE)
-- password_hash (TEXT)
-- created_at (DATETIME)
+## 🎨 Paleta de Colores
+```javascript
+primary: '#6366f1'      // Azul principal
+success: '#10b981'      // Verde (ingresos)
+danger: '#ef4444'       // Rojo (gastos)
+background: '#f8fafc'   // Fondo claro
+card: '#ffffff'         // Tarjetas
+text: '#1e293b'         // Texto principal
+textSecondary: '#64748b' // Texto secundario
 ```
 
-**categories**
-```sql
-- id (INTEGER PRIMARY KEY)
-- user_id (INTEGER)
-- name (TEXT)
-- type (TEXT: 'income' | 'expense')
-- color (TEXT)
-- icon (TEXT)
-- is_default (INTEGER: 0 | 1)
-```
+## 🔒 Seguridad
 
-**transactions**
-```sql
-- id (INTEGER PRIMARY KEY)
-- user_id (INTEGER)
-- category_id (INTEGER)
-- amount (REAL)
-- type (TEXT: 'income' | 'expense')
-- date (DATETIME)
-- description (TEXT)
-- created_at (DATETIME)
-```
+- Las contraseñas se almacenan con hash SHA-256
+- Los datos financieros se guardan localmente en SQLite
+- No se envía información sensible a servidores externos
+- La API Key de Gemini debe mantenerse privada
 
----
+⚠️ **Importante**: No subas tu API Key a repositorios públicos
 
-## 💡 Uso de la App
+## 🚧 Próximas Mejoras
 
-### 1. Registro e Inicio de Sesión
-- Crea una cuenta con tu email y contraseña
-- Inicia sesión para acceder a tus finanzas
+- [ ] Filtros de fecha personalizados
+- [ ] Exportar datos a CSV
+- [ ] Presupuestos y alertas
+- [ ] Gráficos de tendencias mensuales
+- [ ] Modo oscuro
+- [ ] Backup en la nube
+- [ ] Multi-moneda
+- [ ] Recordatorios de gastos recurrentes
 
-### 2. Dashboard
-- Visualiza tu balance, ingresos y gastos del mes
-- Revisa gráficos detallados por categoría
-- Desliza hacia abajo para actualizar
 
-### 3. Agregar Transacciones
-- Ve a la pestaña "Transacciones"
-- Toca el botón "+" flotante
-- Selecciona tipo (Ingreso/Gasto)
-- Ingresa monto y selecciona categoría
-- Añade una descripción opcional
-- Guarda la transacción
+**Jose Daniel Burbano Aponte**
+- GitHub: [@DanielDrk07](https://github.com/DanielDrk07)
+- Email: josedanielburbano257@gmail.com
 
-### 4. Gestionar Categorías
-- Ve a la pestaña "Categorías"
-- Cambia entre pestañas de Gastos e Ingresos
-- Toca "+" para crear nuevas categorías
-- Toca una categoría para editarla
-- Mantén presionado para eliminar
 
-### 5. Perfil
-- Revisa tu información de usuario
-- Cierra sesión cuando lo necesites
-
----
-
-## 🔧 Scripts Disponibles
-```bash
-# Iniciar servidor de desarrollo
-npm start
-
-# Limpiar caché e iniciar
-npx expo start -c
-
-# Ejecutar en Android
-npx expo start --android
-
-```
-
----
-
-## 📦 Dependencias Principales
-```json
-{
-  "expo": "~54.0.20",
-  "react": "18.3.1",
-  "react-native": "0.76.5",
-  "expo-sqlite": "^15.0.4",
-  "expo-crypto": "^14.0.1",
-  "@react-navigation/native": "^6.x",
-  "@react-navigation/bottom-tabs": "^6.x",
-  "@react-navigation/native-stack": "^6.x",
-  "react-native-chart-kit": "^6.x",
-  "@react-native-async-storage/async-storage": "^2.x"
-}
-```
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 👨‍💻 Autor
-
-**Tu Nombre**
-- GitHub:DanielDrk07
-- LinkedIn:https://www.linkedin.com/in/jose-daniel-burbano-bb733b328/
-
----
-
-## 🙏 Agradecimientos
-
-- [Expo](https://expo.dev/) por la excelente plataforma de desarrollo
-- [React Native](https://reactiveative.dev/) por el framework
-- [Ionicons](https://ionic.io/ionicons) por los iconos
-- Comunidad de React Native por el soporte
-
----
-
-## ⭐ Dale una estrella
-
-Si este proyecto te fue útil, ¡considera darle una estrella! ⭐
-
----
-
-<p align="center">
+<div align="center">
   Hecho con ❤️ y ☕
-</p>
+</div>
 ```
 
-MIT License
 
-Copyright (c) 2025 Jose Daniel Burbano Aponte
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
